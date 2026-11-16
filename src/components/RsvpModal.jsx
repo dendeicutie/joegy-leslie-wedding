@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { X, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
+const GOOGLE_SCRIPT_URL =
+  'https://script.google.com/a/macros/adamson.edu.ph/s/AKfycby53du52rIIZGDjnHv1MrZpS7siTfiey8uZ-O50KENSEBJP1fy1_-ESi_e3U6Q7vtEzKQ/exec';
+
 export default function RsvpModal({ onClose, showToast }) {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     attending: 'yes',
@@ -12,11 +16,45 @@ export default function RsvpModal({ onClose, showToast }) {
     message: '',
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
-    showToast("RSVP Submitted! We can't wait to celebrate with you.");
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    const payload = {
+      fullName: formData.fullName.trim(),
+      attendance:
+        formData.attending === 'yes'
+          ? 'Joyfully Accepts'
+          : 'Regretfully Declines',
+      guests: formData.attending === 'yes' ? Number(formData.guestCount) : 0,
+      dietary:
+        formData.attending === 'yes'
+          ? formData.dietary.trim() || 'None'
+          : 'N/A',
+      message: formData.message.trim(),
+    };
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      setSubmitted(true);
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
+      showToast("RSVP Submitted! We can't wait to celebrate with you.");
+    } catch (error) {
+      console.error('RSVP submission error:', error);
+      showToast('Something went wrong sending your RSVP. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,10 +84,11 @@ export default function RsvpModal({ onClose, showToast }) {
               <input
                 type="text"
                 required
+                disabled={isSubmitting}
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 placeholder="e.g. Mr. & Mrs. John Doe"
-                className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
               />
             </div>
 
@@ -58,9 +97,10 @@ export default function RsvpModal({ onClose, showToast }) {
                 Will you attend? *
               </label>
               <select
+                disabled={isSubmitting}
                 value={formData.attending}
                 onChange={(e) => setFormData({ ...formData, attending: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
               >
                 <option value="yes">Joyfully Accepts (I/We will be there!)</option>
                 <option value="no">Regretfully Declines (With warm blessings)</option>
@@ -74,9 +114,10 @@ export default function RsvpModal({ onClose, showToast }) {
                     Number of Guests Attending
                   </label>
                   <select
+                    disabled={isSubmitting}
                     value={formData.guestCount}
                     onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm"
+                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
                   >
                     <option value="1">1 Person</option>
                     <option value="2">2 Persons</option>
@@ -90,10 +131,11 @@ export default function RsvpModal({ onClose, showToast }) {
                   </label>
                   <input
                     type="text"
+                    disabled={isSubmitting}
                     value={formData.dietary}
                     onChange={(e) => setFormData({ ...formData, dietary: e.target.value })}
                     placeholder="e.g. Vegetarian, Seafood Allergy, None"
-                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm"
+                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
                   />
                 </div>
               </>
@@ -105,18 +147,20 @@ export default function RsvpModal({ onClose, showToast }) {
               </label>
               <textarea
                 rows="3"
+                disabled={isSubmitting}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Share a wish or advice for Joegy & Leslie..."
-                className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full btn-shimmer text-[#031A1C] font-bold py-3 rounded-xl text-xs uppercase tracking-widest shadow-xl mt-4"
+              disabled={isSubmitting}
+              className="w-full btn-shimmer text-[#031A1C] font-bold py-3 rounded-xl text-xs uppercase tracking-widest shadow-xl mt-4 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit RSVP Response
+              {isSubmitting ? 'Sending RSVP...' : 'Submit RSVP Response'}
             </button>
           </form>
         ) : (
