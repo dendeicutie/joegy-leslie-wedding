@@ -1,0 +1,94 @@
+  @import "tailwindcss";
+
+@theme {
+  --color-emerald-deep: #031A1C;
+  --color-emerald-mid: #0F383B;
+  --color-emerald-light: #1A5054;
+  --color-emerald-glow: #23696E;
+  --color-gold-light: #FCEABB;
+  --color-gold-primary: #D4AF37;
+  --color-gold-dark: #B3924E;
+  --color-gold-deep: #8A6D2B;
+  --color-ivory: #FFFCF7;
+  --color-ivory-soft: #F7F3EB;
+  --color-ivory-dark: #EBE3D3;
+  --color-rose-soft: #E8C3B9;
+  --color-rose-muted: #C9A095;
+
+  --font-cinzel: 'Cinzel', serif;
+  --font-playfair: 'Playfair Display', serif;
+  --font-pinyon: 'Pinyon Script', cursive;
+  --font-sans: 'Montserrat', sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #031A1C; }
+::-webkit-scrollbar-thumb { background: #B3924E; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF0CA 0%, #D4AF37 50%, #B3924E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: rgba(15, 56, 59, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card-light {
+  background: rgba(255, 252, 247, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* 3D Interactive Envelope Styles */
+.envelope-wrapper { perspective: 1200px; }
+.envelope {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.envelope-flap {
+  transform-origin: top center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 20;
+}
+.envelope-flap.open {
+  transform: rotateX(-180deg);
+  z-index: 1;
+}
+.wax-seal {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.wax-seal:hover {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.6), inset 0 2px 6px rgba(255,255,255,0.5);
+}
+
+/* Shimmer button */
+.btn-shimmer {
+  background: linear-gradient(90deg, #B3924E 0%, #FCEABB 50%, #B3924E 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
