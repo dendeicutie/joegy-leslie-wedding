@@ -16,7 +16,7 @@ export default function Navbar({ onRsvpOpen }) {
         </a>
 
         <div className="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-sans font-medium">
-          {['story', 'venues', 'entourage', 'schedule', 'dresscode', 'gallery', 'gifts', 'faq'].map(id => (
+          {['story', 'venues', 'entourage', 'schedule', 'dresscode', 'gifts', 'faq'].map(id => (
             <a
               key={id}
               href={`#${id}`}
