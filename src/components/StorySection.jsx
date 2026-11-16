@@ -2,20 +2,20 @@ export default function StorySection() {
   const timeline = [
     {
       label: 'The First Hello',
-      title: 'Where Paths Crossed',
-      text: 'It started with a simple spark and late-night conversations that bloomed into a quiet realization that we had found our home in each other.',
+      title: 'Just Neighbors',
+      text: 'Before grand gestures, there were simple errands and snacks at the neighborhood store—quiet moments where Joegy already had his eyes on Leslie, long before life took them from Cavite to different corners of the world.',
       align: 'left',
     },
     {
-      label: 'The Adventure',
-      title: 'Growing Hand in Hand',
-      text: 'Through shared dreams, family celebrations, travels, and countless quiet sunsets, our love grew stronger with every passing year.',
+      label: 'The Unexpected Pause',
+      title: 'Late-Night Talks & 2019',
+      text: 'An unexpected accident gave Leslie time to slow down, opening the door to late-night conversations and shared laughter with Joegy. Though their paths drifted apart once more, a genuine connection had quietly taken root.',
       align: 'right',
     },
     {
-      label: 'The Proposal',
-      title: 'A Promise for Eternity',
-      text: 'Under a canopy of stars and candlelight, the question was asked, tears of joy were wept, and a resounding "YES!" opened the door to forever.',
+      label: 'Forever Begins',
+      title: 'Finding Our Way Home',
+      text: 'Last year, life brought them back together—and this time, the timing was right. From unnoticed glances to choosing each other for a lifetime, Leslie and Joegy write their favorite chapter this December: Forever.',
       align: 'left',
     },
   ];
