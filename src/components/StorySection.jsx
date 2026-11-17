@@ -9,13 +9,13 @@ export default function StorySection() {
   {
     label: 'Miles Apart',
     title: 'Different Directions',
-    text: "As life went on, their paths took different directions. Leslie and her family moved from San Jose, G.M.A., Cavite, to General Trias, while Joegy left to work abroad. He tried to keep in touch, but Leslie, caught up in her own world and daily routines, didn't think much of his attempts. At the time, neither could have imagined that life would eventually bring them closer.",
+    text: "As life went on, their paths took different directions. Leslie and her family moved from San Jose, G.M.A., Cavite, to General Trias, Cavite, while Joegy left to work abroad. He tried to keep in touch, but Leslie, caught up in her own world and daily routines, didn't think much of his attempts. At the time, neither could have imagined that life would eventually bring them closer.",
     align: 'right',
   },
   {
     label: '2019',
     title: 'An Unexpected Turn of Events',
-    text: "Then came an unexpected turn of events.\n\nAfter a difficult accident, Leslie found herself spending more time at home, with a little more time on her hands than usual. It was during this unexpected pause that she and Joegy finally got the chance to talk and get to know each other better. What began as simple conversations gradually became something they both looked forward to. Sometimes, the most unexpected moments lead us to the people we're meant to meet.\n\nBy 2019, just before the world came to a standstill, their casual conversations had grown into a genuine friendship. There were late-night talks, shared laughter, and feelings that slowly began to take shape. But as much as they enjoyed each other's company, life had other plans at the time. Their paths once again went in different directions, and their story was left unfinished.",
+    text: "Then came an unexpected turn of events.\n\nAfter a difficult accident, Leslie found herself spending more time at home, with a little more time on her hands than usual. It was during this unexpected pause that she and Joegy finally got the chance to talk and get to know each other better. What began as simple conversations gradually became something they both looked forward to. Sometimes, the most unexpected moments lead us to the people we're meant to meet.\n\n<br>By 2019, just before the world came to a standstill, their casual conversations had grown into a genuine friendship. There were late-night talks, shared laughter, and feelings that slowly began to take shape. But as much as they enjoyed each other's company, life had other plans at the time. Their paths once again went in different directions, and their story was left unfinished.</br>",
     align: 'left',
   },
   {

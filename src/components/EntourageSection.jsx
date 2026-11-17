@@ -15,7 +15,7 @@ export default function EntourageSection() {
   return (
     <section id="entourage" className="py-20 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-pinyon text-3xl text-[#FCEABB] block">Honored Witnesses &amp; Loved Ones</span>
+        <span className="font-pinyon text-3xl text-[#FCEABB] block">Honored Witnesses &amp; <br>Loved Ones</br></span>
         <h2 className="font-cinzel text-3xl md:text-4xl text-[#FFFCF7] uppercase tracking-widest mt-1">Bridal Entourage</h2>
         <p className="font-sans text-xs text-[#FCEABB]/80 mt-2 uppercase tracking-widest">Hequibal - Marquez Nuptials</p>
         <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-4" />
@@ -123,7 +123,7 @@ export default function EntourageSection() {
         <div className="glass-card p-8 rounded-2xl">
           <h3 className="font-cinzel text-xs tracking-widest text-[#FCEABB] uppercase text-center mb-6">Flower Girls</h3>
           <div className="space-y-4 text-center">
-            {['Ciane Avery M. Lapez', 'Elisha Gale A. Salazar', 'Gabriela Fatima Therese La Rosa'].map((n, i) => (
+            {['Ciane Avery M. Lapez', 'Elisha Gale A. Salazar', 'Gabriel Fatima Therese La Rosa'].map((n, i) => (
               <p key={i} className="font-playfair text-base text-[#FFFCF7] font-semibold">{n}</p>
             ))}
           </div>
