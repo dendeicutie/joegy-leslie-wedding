@@ -6,7 +6,7 @@ export default function VenuesSection({ onVenueClick }) {
       icon: <Church className="w-6 h-6" />,
       type: 'Holy Matrimony',
       title: 'The Wedding Ceremony',
-      time: '2:00 PM | December 22, 2026',
+      time: '3:00 PM | December 18, 2026',
       name: 'Our Lady of Fatima Parish Church',
       desc: 'City Proper, Cavite / Metro Manila Region. Please arrive 30 minutes prior to the solemn start of the holy mass.',
       venueData: {
@@ -21,7 +21,7 @@ export default function VenuesSection({ onVenueClick }) {
       icon: <Sparkles className="w-6 h-6" />,
       type: 'Dinner & Celebration',
       title: 'The Grand Reception',
-      time: '5:00 PM | December 22, 2026',
+      time: '6:00 PM | December 18, 2026',
       name: 'Fynn Boutique Hotel',
       desc: 'Grand Ballroom & Gardens. Cocktails, formal dinner, live musical performances, and dancing to follow immediately after ceremony.',
       venueData: {

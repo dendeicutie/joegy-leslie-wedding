@@ -105,7 +105,7 @@ export default function DressCodeSection() {
 
       <div className="glass-card p-6 sm:p-8 md:p-12 rounded-3xl border border-[#D4AF37]/40 text-left">
         <p className="font-sans text-sm md:text-base text-[#FFFCF7]/90 leading-relaxed mb-10 max-w-2xl mx-auto text-center">
-          We encourage you to wear Semi-Formal Attire with any color except White, Mocha, and Teal Green. <br> Here are the attire guide for our Principal Sponsors and Entourage:</br>
+          We kindly ask our guests and entourage to grace our celebration in semi-formal attire following our wedding color guide below.
         </p>
 
         {/* Grouped Attire Cards */}
