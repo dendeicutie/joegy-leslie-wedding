@@ -9,7 +9,7 @@ export default function StorySection() {
   {
     label: 'Miles Apart',
     title: 'Different Directions',
-    text: "As life went on, their paths took different directions. Leslie and her family moved from San Jose, G.M.A., Cavite, to General Trias, Cavite, while Joegy left to work abroad. He tried to keep in touch, but Leslie, caught up in her own world and daily routines, didn't think much of his attempts. At the time, neither could have imagined that life would eventually bring them closer.",
+    text: "As life went on, their paths took different directions. Leslie and her family moved from San Jose, G.M.A., Cavite, to General Trias, while Joegy left to work abroad. He tried to keep in touch, but Leslie, caught up in her own world and daily routines, didn't think much of his attempts. At the time, neither could have imagined that life would eventually bring them closer.",
     align: 'right',
   },
   {
