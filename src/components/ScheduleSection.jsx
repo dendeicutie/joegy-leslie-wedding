@@ -1,8 +1,8 @@
 const events = [
   { time: '1:00 PM', title: 'Guest Assembly', desc: 'Arrival at the Churst' },
-  { time: '2:00 PM', title: 'Holy Ceremony', desc: 'Nuptial Mass & Vows' <br> 'Our Lady of Fatima Parish Church' },
-  { time: '4:00 PM', title: 'Cocktail Hour', desc: 'Drinks & Appetizers' <br> 'Fynn Boutique Hotel' },
-  { time: '5:00 PM', title: 'Grand Reception', desc: 'Dinner, Toast & Party' <br> 'Fynn Boutique Hotel' },
+  { time: '2:00 PM', title: 'Holy Ceremony', desc: 'Nuptial Mass & Vows'  },
+  { time: '4:00 PM', title: 'Cocktail Hour', desc: 'Drinks & Appetizers'  },
+  { time: '5:00 PM', title: 'Grand Reception', desc: 'Dinner, Toast & Party' },
 ];
 
 export default function ScheduleSection() {
