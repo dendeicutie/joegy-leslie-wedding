@@ -15,7 +15,7 @@ export default function EntourageSection() {
   return (
     <section id="entourage" className="py-20 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-pinyon text-3xl text-[#FCEABB] block">Honored Witnesses &amp; Loved Ones</span>
+        <span className="font-pinyon text-3xl text-[#FCEABB] block">Honored Witnesses &amp;&nbsp;Loved&nbsp;Ones</span>
         <h2 className="font-cinzel text-3xl md:text-4xl text-[#FFFCF7] uppercase tracking-widest mt-1">Bridal Entourage</h2>
         <p className="font-sans text-xs text-[#FCEABB]/80 mt-2 uppercase tracking-widest">Hequibal - Marquez Nuptials</p>
         <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-4" />
@@ -25,13 +25,13 @@ export default function EntourageSection() {
       <div className="grid md:grid-cols-2 gap-8 mb-16">
         <div className="glass-card p-8 rounded-2xl text-center border-t-2 border-t-[#D4AF37]">
           <h3 className="font-cinzel text-xs tracking-[0.2em] text-[#FCEABB] uppercase mb-3">Parents of the Groom</h3>
-          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7]">Mr. Ernesto E. Hequibal</p>
-          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7] mt-1">Mrs. Marilyn F. Visperas</p>
+          <p className="font-playfair text-sm text-[#FFFCF7]/70 italic">Mr. Ernesto E. Hequibal <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
+          <p className="font-playfair text-sm text-[#FFFCF7]/70 italic mt-1">Mrs. Marilyn F. Visperas <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
         </div>
         <div className="glass-card p-8 rounded-2xl text-center border-t-2 border-t-[#D4AF37]">
           <h3 className="font-cinzel text-xs tracking-[0.2em] text-[#FCEABB] uppercase mb-3">Parents of the Bride</h3>
-          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7]">Mr. Domingo C. Anciado</p>
-          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7] mt-1">Mrs. Teresita A. Marquez</p>
+          <p className="font-playfair text-sm text-[#FFFCF7]/70 italic">Mr. Domingo C. Anciado <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
+          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7] mt-3">Mrs. Teresita A. Marquez</p>
         </div>
       </div>
 

@@ -32,7 +32,7 @@ export default function HeroSection({ onRsvpOpen }) {
           <span className="h-[1px] w-12 bg-[#D4AF37]/50" />
         </div>
 
-        <CountdownTimer targetDate="2026-12-18T15:00:00" />
+        <CountdownTimer targetDate="2026-12-22T14:00:00" />
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <button

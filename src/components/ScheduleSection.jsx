@@ -1,8 +1,23 @@
 const events = [
-  { time: '1:30 PM', title: 'Guest Assembly', desc: 'Arrival at Cathedral' },
-  { time: '2:00 PM', title: 'Holy Ceremony', desc: 'Nuptial Mass & Vows' },
-  { time: '4:00 PM', title: 'Cocktail Hour', desc: 'Drinks & Appetizers' },
-  { time: '5:00 PM', title: 'Grand Reception', desc: 'Dinner, Toast & Party' },
+  { time: '1:00 PM', title: 'Guest Assembly', desc: 'Arrival at the Church' },
+  {
+    time: '2:00 PM',
+    title: 'Holy Ceremony',
+    desc: 'Nuptial Mass & Vows',
+    venue: 'Our Lady of Fatima Parish Church',
+  },
+  {
+    time: '4:00 PM',
+    title: 'Cocktail Hour',
+    desc: 'Drinks & Appetizers',
+    venue: 'Fynn Boutique Hotel',
+  },
+  {
+    time: '5:00 PM',
+    title: 'Grand Reception',
+    desc: 'Dinner, Toast & Party',
+    venue: 'Fynn Boutique Hotel',
+  },
 ];
 
 export default function ScheduleSection() {
@@ -20,7 +35,10 @@ export default function ScheduleSection() {
             <div key={idx} className="glass-card p-6 rounded-2xl border border-[#D4AF37]/30 flex flex-col items-center">
               <span className="text-xs font-cinzel text-[#FCEABB] tracking-widest uppercase mb-1">{item.time}</span>
               <h3 className="font-playfair text-lg text-[#FFFCF7] font-bold mb-2">{item.title}</h3>
-              <p className="text-xs font-sans text-[#FFFCF7]/70">{item.desc}</p>
+              <p className="text-xs font-sans text-[#FFFCF7]/70 text-center">{item.desc}</p>
+              {item.venue && (
+                <p className="text-[11px] font-sans text-[#FCEABB]/85 font-medium text-center mt-1.5">{item.venue}</p>
+              )}
             </div>
           ))}
         </div>

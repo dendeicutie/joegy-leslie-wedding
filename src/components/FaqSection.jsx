@@ -3,7 +3,7 @@ import FaqAccordion from './FaqAccordion';
 const faqItems = [
   {
     q: 'What time should I arrive at the ceremony?',
-    a: 'Please plan to arrive at the Cathedral by 2:30 PM. The holy nuptial mass will start promptly at 3:00 PM.',
+    a: 'Please plan to arrive at Our Lady of Fatima Parish Church by 1:00 PM (1 hour prior to the ceremony). The holy nuptial mass will start promptly at 2:00 PM.',
   },
   {
     q: 'Can I bring a plus one?',
@@ -11,7 +11,7 @@ const faqItems = [
   },
   {
     q: 'Is there parking available at the venues?',
-    a: 'Yes! Both the Cathedral and reception estate offer ample secure parking space for all wedding guests.',
+    a: 'Yes! Both Our Lady of Fatima Parish Church and Fynn Boutique Hotel offer ample secure parking space for all wedding guests.',
   },
   {
     q: 'Is this an unplugged ceremony?',

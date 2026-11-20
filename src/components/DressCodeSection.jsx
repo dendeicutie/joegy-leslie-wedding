@@ -25,6 +25,7 @@ const ATTIRE_GROUPS = [
         colors: [
           { name: 'Champagne', hex: '#E5D3B3' },
           { name: 'Beige', hex: '#D2C1A5' },
+          { name: 'Mocha', hex: '#9E826C' },
           { name: 'Black', hex: '#1C1C1C' },
         ],
       },
@@ -104,8 +105,11 @@ export default function DressCodeSection() {
       <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-4 mb-10" />
 
       <div className="glass-card p-6 sm:p-8 md:p-12 rounded-3xl border border-[#D4AF37]/40 text-left">
+        <p className="font-sans text-sm md:text-base text-[#FFFCF7]/90 leading-relaxed mb-4 max-w-2xl mx-auto text-center">
+          <strong className="text-[#FCEABB]">For our Guests:</strong> We encourage you to wear Semi-Formal Attire with any color except White, Mocha, and Teal Green.
+        </p>
         <p className="font-sans text-sm md:text-base text-[#FFFCF7]/90 leading-relaxed mb-10 max-w-2xl mx-auto text-center">
-          We kindly ask our guests and entourage to grace our celebration in semi-formal attire following our wedding color guide below.
+          <strong className="text-[#FCEABB]">For our Principal Sponsors &amp; Entourage:</strong> Here are the attire guide for our Principal Sponsors and Entourage.
         </p>
 
         {/* Grouped Attire Cards */}
