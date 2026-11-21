@@ -69,7 +69,7 @@ export default function RsvpModal({ onClose, showToast }) {
               <span className="font-pinyon text-2xl text-[#B3924E] block">Celebration of Love</span>
               <h3 className="font-cinzel text-2xl font-bold uppercase tracking-wider">RSVP Confirmation</h3>
               <p className="text-xs font-sans text-[#031A1C]/70 mt-1">
-                Please confirm your attendance by November 18, 2026
+                Please confirm your attendance by December 8, 2026
               </p>
             </div>
 

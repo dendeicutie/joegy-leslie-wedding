@@ -19,7 +19,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#031A1C] via-[#0F383B] to-black overflow-hidden px-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#031A1C] via-[#0F383B] to-black overflow-hidden px-4 py-6">
       {/* Keyframes for drawing the dashed flight trail */}
       <style>{`
         @keyframes drawFlightTrail {
@@ -48,16 +48,26 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#E8C3B9]/10 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]" />
       </div>
 
-      <div className="text-center max-w-lg w-full flex flex-col items-center z-10 pt-8">
-        <p className="font-pinyon text-3xl md:text-4xl text-[#FCEABB] mb-2 animate-bounce">
+      <div className="text-center max-w-lg w-full flex flex-col items-center z-10">
+        <p className="font-pinyon text-3xl md:text-4xl text-[#FCEABB] mb-1.5 animate-bounce">
           You are cordially invited to
         </p>
-        <h1 className="font-cinzel text-xl md:text-2xl tracking-[0.2em] text-[#FFFCF7] uppercase mb-32 md:mb-36">
+        <h1 className="font-cinzel text-lg sm:text-xl md:text-2xl tracking-[0.2em] text-[#FFFCF7] uppercase mb-3 sm:mb-4">
           The Wedding Celebration of
         </h1>
 
+        {/* Philippines-to-New Zealand Map Band: Same width as the envelope (max-w-md), sitting completely above it */}
+        <div className="w-full max-w-md h-36 sm:h-40 md:h-44 flex items-center justify-center mb-2 pointer-events-none select-none z-0">
+          <img
+            src="/mapbg.png"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-contain opacity-65"
+          />
+        </div>
+
         {/* Envelope Wrapper */}
-        <div className="envelope-wrapper w-full max-w-md my-4 relative">
+        <div className="envelope-wrapper w-full max-w-md relative">
           {/* Animated Airplane & Heart Flight Path Overlay */}
           {isOpened && (
             <svg
@@ -122,21 +132,21 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
           )}
 
           <div
-            className={`envelope relative bg-[#0F383B] border-2 border-[#D4AF37]/40 rounded-xl shadow-2xl overflow-visible transition-transform duration-700 ${
+            className={`envelope relative z-10 bg-[#0F383B] border-2 border-[#D4AF37]/40 rounded-xl shadow-2xl overflow-visible transition-transform duration-700 ${
               isOpened ? 'scale-105' : 'hover:scale-[1.02]'
             }`}
           >
             {/* Top Flap */}
             <div
-              className={`envelope-flap absolute top-0 left-0 right-0 h-36 bg-gradient-to-b from-[#1A5054] to-[#0F383B] border-b-2 border-[#D4AF37]/50 rounded-t-xl flex items-center justify-center ${
+              className={`envelope-flap absolute top-0 left-0 right-0 h-32 sm:h-36 bg-gradient-to-b from-[#1A5054] to-[#0F383B] border-b-2 border-[#D4AF37]/50 rounded-t-xl flex items-center justify-center ${
                 isOpened ? 'open' : ''
               }`}
               style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
             />
 
             {/* Envelope Body */}
-            <div className="p-8 md:p-10 text-center min-h-[260px] flex flex-col justify-center items-center bg-gradient-to-b from-[#0F383B]/90 to-[#031A1C]">
-              <div className="border border-[#D4AF37]/30 p-6 rounded-lg w-full bg-[#031A1C]/60 backdrop-blur-md">
+            <div className="p-6 sm:p-8 md:p-10 text-center min-h-[240px] sm:min-h-[260px] flex flex-col justify-center items-center bg-gradient-to-b from-[#0F383B]/90 to-[#031A1C]">
+              <div className="border border-[#D4AF37]/30 p-5 sm:p-6 rounded-lg w-full bg-[#031A1C]/60 backdrop-blur-md">
                 <span className="font-cinzel text-xs tracking-widest text-[#FCEABB] uppercase block mb-1" />
                 <h2
                   className={`font-playfair text-2xl md:text-3xl gold-gradient-text font-bold my-2 transition-all duration-1000 delay-500 transform ${
@@ -151,7 +161,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
 
             {/* Wax Seal Button */}
             <div
-              className={`absolute top-28 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 ${
+              className={`absolute top-24 sm:top-28 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 ${
                 isOpened ? 'opacity-0 scale-50 pointer-events-none' : 'opacity-100 scale-100'
               }`}
             >
@@ -173,7 +183,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
           </div>
         </div>
 
-        <p className="text-xs font-sans tracking-widest text-[#FCEABB]/70 uppercase mt-8 animate-pulse">
+        <p className="text-xs font-sans tracking-widest text-[#FCEABB]/70 uppercase mt-6 sm:mt-8 animate-pulse">
           ✨ Click wax seal to open ✨
         </p>
       </div>
