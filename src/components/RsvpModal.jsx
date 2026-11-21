@@ -12,7 +12,6 @@ export default function RsvpModal({ onClose, showToast }) {
     fullName: '',
     attending: 'yes',
     guestCount: '1',
-    dietary: '',
     message: '',
   });
 
@@ -29,10 +28,7 @@ export default function RsvpModal({ onClose, showToast }) {
           ? 'Joyfully Accepts'
           : 'Regretfully Declines',
       guests: formData.attending === 'yes' ? Number(formData.guestCount) : 0,
-      dietary:
-        formData.attending === 'yes'
-          ? formData.dietary.trim() || 'None'
-          : 'N/A',
+      dietary: 'N/A',
       message: formData.message.trim(),
     };
 
@@ -87,7 +83,7 @@ export default function RsvpModal({ onClose, showToast }) {
                 disabled={isSubmitting}
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                placeholder="e.g. Mr. & Mrs. John Doe"
+                placeholder="e.g. Leslie Marquez"
                 className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
               />
             </div>
@@ -108,37 +104,21 @@ export default function RsvpModal({ onClose, showToast }) {
             </div>
 
             {formData.attending === 'yes' && (
-              <>
-                <div>
-                  <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80 mb-1">
-                    Number of Guests Attending
-                  </label>
-                  <select
-                    disabled={isSubmitting}
-                    value={formData.guestCount}
-                    onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
-                  >
-                    <option value="1">1 Person</option>
-                    <option value="2">2 Persons</option>
-                    <option value="3">3 Persons</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80 mb-1">
-                    Dietary Restrictions / Allergies
-                  </label>
-                  <input
-                    type="text"
-                    disabled={isSubmitting}
-                    value={formData.dietary}
-                    onChange={(e) => setFormData({ ...formData, dietary: e.target.value })}
-                    placeholder="e.g. Vegetarian, Seafood Allergy, None"
-                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
-                  />
-                </div>
-              </>
+              <div>
+                <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80 mb-1">
+                  Number of Guests Attending
+                </label>
+                <select
+                  disabled={isSubmitting}
+                  value={formData.guestCount}
+                  onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
+                >
+                  <option value="1">1 Person</option>
+                  <option value="2">2 Persons</option>
+                  <option value="3">3 Persons</option>
+                </select>
+              </div>
             )}
 
             <div>
