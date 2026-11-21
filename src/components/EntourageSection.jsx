@@ -24,14 +24,21 @@ export default function EntourageSection() {
       {/* Parents */}
       <div className="grid md:grid-cols-2 gap-8 mb-16">
         <div className="glass-card p-8 rounded-2xl text-center border-t-2 border-t-[#D4AF37]">
-          <h3 className="font-cinzel text-xs tracking-[0.2em] text-[#FCEABB] uppercase mb-3">Parents of the Groom</h3>
-          <p className="font-playfair text-sm text-[#FFFCF7]/70 italic">Mr. Ernesto E. Hequibal <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
-          <p className="font-playfair text-sm text-[#FFFCF7]/70 italic mt-1">Mrs. Marilyn F. Visperas <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
+          <h3 className="font-cinzel text-xs tracking-[0.2em] text-[#FCEABB] uppercase mb-4">Parents of the Groom</h3>
+          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7]">Mr. Jose G. Hequibal (+)</p>
+          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7] mt-1">Mrs. Cynthia F. Hequibal (+)</p>
+          <div className="mt-4 pt-3 border-t border-[#D4AF37]/20">
+            <p className="font-playfair text-sm text-[#FFFCF7]/70 italic">Mr. Ernesto E. Hequibal <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
+            <p className="font-playfair text-sm text-[#FFFCF7]/70 italic mt-1">Mrs. Marilyn F. Visperas <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
+          </div>
         </div>
         <div className="glass-card p-8 rounded-2xl text-center border-t-2 border-t-[#D4AF37]">
-          <h3 className="font-cinzel text-xs tracking-[0.2em] text-[#FCEABB] uppercase mb-3">Parents of the Bride</h3>
-          <p className="font-playfair text-sm text-[#FFFCF7]/70 italic">Mr. Domingo C. Anciado <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
-          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7] mt-3">Mrs. Teresita A. Marquez</p>
+          <h3 className="font-cinzel text-xs tracking-[0.2em] text-[#FCEABB] uppercase mb-4">Parents of the Bride</h3>
+          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7]">Mr. Rodolfo E. Marquez (+)</p>
+          <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7] mt-1">Mrs. Teresita A. Marquez</p>
+          <div className="mt-4 pt-3 border-t border-[#D4AF37]/20">
+            <p className="font-playfair text-sm text-[#FFFCF7]/70 italic">Mr. Domingo C. Anciado <span className="text-[#FCEABB]/60 text-xs">(proxy)</span></p>
+          </div>
         </div>
       </div>
 

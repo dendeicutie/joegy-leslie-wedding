@@ -22,9 +22,9 @@ export default function GiftsSection() {
         </p>
 
         <div className="mt-8 pt-6 border-t border-[#D4AF37]/20 flex items-center justify-center gap-2 text-xs font-sans tracking-widest text-[#E8C3B9]/90 uppercase">
-          <Heart className="w-3.5 h-3.5 text-[#D4AF37]" />
+          <Heart className="w-3.5 h-3.5 text-red-500" />
           <span>Joegy &amp; Leslie</span>
-          <Heart className="w-3.5 h-3.5 text-[#D4AF37]" />
+          <Heart className="w-3.5 h-3.5 text-red-500" />
         </div>
       </div>
     </section>

@@ -1,22 +1,36 @@
 import { useState, useEffect } from 'react';
 
-export default function CountdownTimer({ targetDate }) {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+export default function CountdownTimer({ targetDate = '2026-12-22T14:00:00+08:00' }) {
+  const parseTargetTime = (dateInput) => {
+    if (typeof dateInput === 'string' && !dateInput.includes('+') && !dateInput.endsWith('Z')) {
+      const normalized = dateInput.includes('T') ? `${dateInput}+08:00` : `${dateInput}T00:00:00+08:00`;
+      return new Date(normalized).getTime();
+    }
+    return new Date(dateInput).getTime();
+  };
+
+  const calculateTimeLeft = () => {
+    const now = new Date().getTime();
+    const distance = parseTargetTime(targetDate) - now;
+
+    if (isNaN(distance) || distance <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
   useEffect(() => {
+    setTimeLeft(calculateTimeLeft());
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = new Date(targetDate).getTime() - now;
-      if (distance < 0) {
-        clearInterval(interval);
-        return;
-      }
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearInterval(interval);
   }, [targetDate]);

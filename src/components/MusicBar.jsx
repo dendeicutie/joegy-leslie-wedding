@@ -11,7 +11,7 @@ export default function MusicBar({ isPlaying, onToggle }) {
         {isPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
       </button>
       <span className="text-xs font-sans tracking-wider text-[#FCEABB] hidden sm:inline">
-        {isPlaying ? 'Playing Ambient Melody' : 'Music Off'}
+        {isPlaying ? 'Tahanan - El Manu (Piano)' : 'Music Off'}
       </span>
       {isPlaying && (
         <div className="flex gap-1 items-end h-4">

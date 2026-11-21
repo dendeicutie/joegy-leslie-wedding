@@ -1,7 +1,22 @@
+import { useState } from 'react';
+
 export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
-  // Smooth flight path: starts lower-left (-90, 340), loops into a heart over the envelope, exits upper-right (530, -95)
+  const [isAnimating, setIsAnimating] = useState(false);
+  const isOpened = envelopeOpen || isAnimating;
+
+  // Rounded, continuous heart loop centered around "Joegy & Leslie" (220, 150)
   const flightPath =
-    'M -90,340 C 20,310 175,265 215,180 C 245,115 170,80 155,130 C 145,95 85,120 115,175 C 155,245 360,115 530,-95';
+    'M -90,340 C 30,305 165,265 245,205 C 325,145 290,72 220,118 C 150,72 115,145 195,205 C 265,255 390,120 530,-95';
+
+  const handleSealClick = () => {
+    if (isOpened) return;
+    setIsAnimating(true);
+
+    // Wait for the 3.2s airplane flight to finish completely before transitioning to the main invitation
+    setTimeout(() => {
+      if (onOpen) onOpen();
+    }, 3400);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#031A1C] via-[#0F383B] to-black overflow-hidden px-4">
@@ -23,7 +38,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
 
         .flight-trail-animate {
           stroke-dasharray: 6 6;
-          animation: drawFlightTrail 2s cubic-bezier(0.35, 0, 0.25, 1) forwards;
+          animation: drawFlightTrail 3.2s cubic-bezier(0.35, 0, 0.25, 1) forwards;
         }
       `}</style>
 
@@ -44,7 +59,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
         {/* Envelope Wrapper */}
         <div className="envelope-wrapper w-full max-w-md my-4 relative">
           {/* Animated Airplane & Heart Flight Path Overlay */}
-          {envelopeOpen && (
+          {isOpened && (
             <svg
               viewBox="0 0 440 300"
               className="absolute -inset-x-12 -inset-y-16 w-[calc(100%+6rem)] h-[calc(100%+8rem)] pointer-events-none z-40 overflow-visible"
@@ -62,7 +77,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
                 <circle r="3.2" fill="#FFFCF7" />
               </g>
 
-              {/* Dashed Flight Path with Heart Loop */}
+              {/* Dashed Flight Path with Rounded Heart Loop */}
               <path
                 d={flightPath}
                 fill="none"
@@ -77,7 +92,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
               <g filter="url(#planeGlow)">
                 {/* Native SVG motion along the exact path with automatic directional banking */}
                 <animateMotion
-                  dur="2s"
+                  dur="3.2s"
                   repeatCount="1"
                   fill="freeze"
                   rotate="auto"
@@ -92,7 +107,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
                   attributeName="opacity"
                   values="0;1;1;0"
                   keyTimes="0;0.08;0.9;1"
-                  dur="2s"
+                  dur="3.2s"
                   fill="freeze"
                 />
 
@@ -108,13 +123,13 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
 
           <div
             className={`envelope relative bg-[#0F383B] border-2 border-[#D4AF37]/40 rounded-xl shadow-2xl overflow-visible transition-transform duration-700 ${
-              envelopeOpen ? 'scale-105' : 'hover:scale-[1.02]'
+              isOpened ? 'scale-105' : 'hover:scale-[1.02]'
             }`}
           >
             {/* Top Flap */}
             <div
               className={`envelope-flap absolute top-0 left-0 right-0 h-36 bg-gradient-to-b from-[#1A5054] to-[#0F383B] border-b-2 border-[#D4AF37]/50 rounded-t-xl flex items-center justify-center ${
-                envelopeOpen ? 'open' : ''
+                isOpened ? 'open' : ''
               }`}
               style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
             />
@@ -125,7 +140,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
                 <span className="font-cinzel text-xs tracking-widest text-[#FCEABB] uppercase block mb-1" />
                 <h2
                   className={`font-playfair text-2xl md:text-3xl gold-gradient-text font-bold my-2 transition-all duration-1000 delay-500 transform ${
-                    envelopeOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    isOpened ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                 >
                   Joegy &amp; Leslie
@@ -137,12 +152,12 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
             {/* Wax Seal Button */}
             <div
               className={`absolute top-28 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 ${
-                envelopeOpen ? 'opacity-0 scale-50 pointer-events-none' : 'opacity-100 scale-100'
+                isOpened ? 'opacity-0 scale-50 pointer-events-none' : 'opacity-100 scale-100'
               }`}
             >
               <button
-                onClick={onOpen}
-                disabled={envelopeOpen}
+                onClick={handleSealClick}
+                disabled={isOpened}
                 className="wax-seal group w-20 h-20 rounded-full bg-gradient-to-tr from-[#8A6D2B] via-[#D4AF37] to-[#FCEABB] p-1 cursor-pointer flex items-center justify-center focus:outline-none transition-transform active:scale-95"
                 title="Click to Open Invitation"
               >

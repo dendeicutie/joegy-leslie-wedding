@@ -41,7 +41,7 @@ export default function App() {
 
     setTimeout(() => {
       setSiteRevealed(true);
-    }, 1400);
+    }, 3400);
   };
 
   const toggleAudio = () => {
@@ -65,26 +65,35 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden bg-[#031A1C] text-[#FFFCF7]">
+      {/* Single Blended Floral Layer anchored to the right edge and scaled responsively for mobile & desktop */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none bg-right-bottom bg-no-repeat bg-[length:75%_auto] sm:bg-[length:55%_auto] md:bg-[length:45%_auto] opacity-15 mix-blend-luminosity"
+        style={{ backgroundImage: "url('/floral-bg.png')" }}
+        aria-hidden="true"
+      />
 
-      {/* Toast */}
-      {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#D4AF37] text-[#031A1C] px-6 py-3 rounded-xl shadow-2xl font-semibold flex items-center gap-3 animate-bounce">
-          <CheckCircle className="w-5 h-5" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+      {/* Main Scrollable Foreground Content */}
+      <div className="relative z-10">
+        {/* Toast */}
+        {toastMessage && (
+          <div className="fixed bottom-6 right-6 z-50 bg-[#D4AF37] text-[#031A1C] px-6 py-3 rounded-xl shadow-2xl font-semibold flex items-center gap-3 animate-bounce">
+            <CheckCircle className="w-5 h-5" />
+            <span>{toastMessage}</span>
+          </div>
+        )}
 
-      <MusicBar isPlaying={isPlayingAudio} onToggle={toggleAudio} />
-      <Navbar onRsvpOpen={() => setIsRsvpOpen(true)} />
-      <HeroSection onRsvpOpen={() => setIsRsvpOpen(true)} />
-      <StorySection />
-      <VenuesSection onVenueClick={handleVenueClick} />
-      <EntourageSection />
-      <ScheduleSection />
-      <DressCodeSection />
-      <GiftsSection />
-      <FaqSection />
-      <Footer />
+        <MusicBar isPlaying={isPlayingAudio} onToggle={toggleAudio} />
+        <Navbar onRsvpOpen={() => setIsRsvpOpen(true)} />
+        <HeroSection onRsvpOpen={() => setIsRsvpOpen(true)} />
+        <StorySection />
+        <VenuesSection onVenueClick={handleVenueClick} />
+        <EntourageSection />
+        <ScheduleSection />
+        <DressCodeSection />
+        <GiftsSection />
+        <FaqSection />
+        <Footer />
+      </div>
 
       {/* Modals */}
       {isRsvpOpen && (
