@@ -1,5 +1,5 @@
 import GiftsSection from './components/GiftsSection';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { CheckCircle } from 'lucide-react';
 
@@ -26,6 +26,12 @@ export default function App() {
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const [selectedVenue, setSelectedVenue] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
+
+  useEffect(() => {
+    audioSynth.setOnStateChange((playing) => {
+      setIsPlayingAudio(playing);
+    });
+  }, []);
 
   const handleOpenEnvelope = () => {
     setEnvelopeOpen(true);
@@ -65,9 +71,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden bg-[#031A1C] text-[#FFFCF7]">
-      {/* Single Blended Floral Layer anchored to the right edge and scaled responsively for mobile & desktop */}
+      {/* Single Blended Floral Layer (GPU-accelerated so it never lags on fast mobile scrolls) */}
       <div
-        className="fixed inset-0 z-0 pointer-events-none bg-right-bottom bg-no-repeat bg-[length:75%_auto] sm:bg-[length:55%_auto] md:bg-[length:45%_auto] opacity-15 mix-blend-luminosity"
+        className="fixed inset-0 z-0 pointer-events-none bg-right-bottom bg-no-repeat bg-[length:75%_auto] sm:bg-[length:55%_auto] md:bg-[length:45%_auto] opacity-15 mix-blend-luminosity transform-gpu will-change-transform"
         style={{ backgroundImage: "url('/floral-bg.png')" }}
         aria-hidden="true"
       />
