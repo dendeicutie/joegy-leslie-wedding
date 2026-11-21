@@ -47,7 +47,7 @@ export default function App() {
 
     setTimeout(() => {
       setSiteRevealed(true);
-    }, 3400);
+    }, 1400);
   };
 
   const toggleAudio = () => {
