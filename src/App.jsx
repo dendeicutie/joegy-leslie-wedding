@@ -1,5 +1,4 @@
-import GiftsSection from './components/GiftsSection';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import confetti from 'canvas-confetti';
 import { CheckCircle } from 'lucide-react';
 
@@ -8,15 +7,18 @@ import EnvelopeScreen from './components/EnvelopeScreen';
 import Navbar from './components/Navbar';
 import MusicBar from './components/MusicBar';
 import HeroSection from './components/HeroSection';
-import StorySection from './components/StorySection';
-import VenuesSection from './components/VenuesSection';
-import EntourageSection from './components/EntourageSection';
-import ScheduleSection from './components/ScheduleSection';
-import DressCodeSection from './components/DressCodeSection';
-import FaqSection from './components/FaqSection';
-import Footer from './components/Footer';
-import RsvpModal from './components/RsvpModal';
-import MapModal from './components/MapModal';
+
+// Lazy-load below-the-fold sections and modals so the top of the invitation paints immediately
+const StorySection = lazy(() => import('./components/StorySection'));
+const VenuesSection = lazy(() => import('./components/VenuesSection'));
+const EntourageSection = lazy(() => import('./components/EntourageSection'));
+const ScheduleSection = lazy(() => import('./components/ScheduleSection'));
+const DressCodeSection = lazy(() => import('./components/DressCodeSection'));
+const GiftsSection = lazy(() => import('./components/GiftsSection'));
+const FaqSection = lazy(() => import('./components/FaqSection'));
+const Footer = lazy(() => import('./components/Footer'));
+const RsvpModal = lazy(() => import('./components/RsvpModal'));
+const MapModal = lazy(() => import('./components/MapModal'));
 
 export default function App() {
   const [envelopeOpen, setEnvelopeOpen] = useState(false);
@@ -82,22 +84,25 @@ export default function App() {
       <MusicBar isPlaying={isPlayingAudio} onToggle={toggleAudio} />
       <Navbar onRsvpOpen={() => setIsRsvpOpen(true)} />
       <HeroSection onRsvpOpen={() => setIsRsvpOpen(true)} />
-      <StorySection />
-      <VenuesSection onVenueClick={handleVenueClick} />
-      <EntourageSection />
-      <ScheduleSection />
-      <DressCodeSection />
-      <GiftsSection />
-      <FaqSection />
-      <Footer />
 
-      {/* Modals */}
-      {isRsvpOpen && (
-        <RsvpModal onClose={() => setIsRsvpOpen(false)} showToast={showToast} />
-      )}
-      {isMapModalOpen && selectedVenue && (
-        <MapModal venue={selectedVenue} onClose={() => setIsMapModalOpen(false)} />
-      )}
+      <Suspense fallback={null}>
+        <StorySection />
+        <VenuesSection onVenueClick={handleVenueClick} />
+        <EntourageSection />
+        <ScheduleSection />
+        <DressCodeSection />
+        <GiftsSection />
+        <FaqSection />
+        <Footer />
+
+        {/* Modals */}
+        {isRsvpOpen && (
+          <RsvpModal onClose={() => setIsRsvpOpen(false)} showToast={showToast} />
+        )}
+        {isMapModalOpen && selectedVenue && (
+          <MapModal venue={selectedVenue} onClose={() => setIsMapModalOpen(false)} />
+        )}
+      </Suspense>
     </div>
   );
 }
