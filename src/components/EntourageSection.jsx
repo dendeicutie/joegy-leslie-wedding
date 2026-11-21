@@ -46,7 +46,6 @@ export default function EntourageSection() {
       <div className="mb-16">
         <div className="text-center mb-8">
           <h3 className="font-cinzel text-xl gold-gradient-text uppercase tracking-widest">Principal Sponsors</h3>
-          <p className="font-pinyon text-lg text-[#FFFCF7]/80">To Stand as Principal Witnesses to our Vows</p>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {principalSponsors.map((pair, idx) => (

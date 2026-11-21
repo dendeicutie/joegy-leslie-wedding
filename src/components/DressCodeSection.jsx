@@ -21,7 +21,7 @@ const ATTIRE_GROUPS = [
       },
       {
         title: 'Ninang & Ninong',
-        attire: 'Formal gown, Barong, or dark formal suit',
+        attire: 'Formal gown, or dark formal suit',
         colors: [
           { name: 'Champagne', hex: '#E5D3B3' },
           { name: 'Beige', hex: '#D2C1A5' },
@@ -75,18 +75,10 @@ const ATTIRE_GROUPS = [
       {
         title: 'Gentlemen',
         attire: 'Collared polo or long-sleeve button-down with tailored slacks',
-        colors: [
-          { name: 'Sage / Olive', hex: '#7D8B76' },
-          { name: 'Beige / Khaki', hex: '#D5C7B2' },
-        ],
       },
       {
         title: 'Ladies',
         attire: 'Midi or maxi dress, cocktail dress, or dressy separates',
-        colors: [
-          { name: 'Sage Green', hex: '#8FA189' },
-          { name: 'Neutral & Earth Tones', hex: '#C7B8A1' },
-        ],
       },
     ],
   },
@@ -136,42 +128,51 @@ export default function DressCodeSection() {
 
                 {/* Role Sub-Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {group.roles.map((role) => (
-                    <div
-                      key={role.title}
-                      className="bg-[#0F383B]/40 border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 rounded-xl p-4 flex flex-col justify-between transition-all"
-                    >
-                      <div>
-                        <h4 className="font-playfair text-base font-semibold text-[#FFFCF7] mb-1">
-                          {role.title}
-                        </h4>
-                        <p className="font-sans text-xs text-[#FFFCF7]/75 leading-relaxed mb-4">
-                          {role.attire}
-                        </p>
-                      </div>
-
-                      {/* Circular Color Swatches */}
-                      <div className="pt-3 border-t border-[#D4AF37]/15">
-                        <span className="block font-sans text-[10px] uppercase tracking-widest text-[#FCEABB]/60 mb-2">
-                          Color Swatches
-                        </span>
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          {role.colors.map((swatch) => (
-                            <div key={swatch.name} className="flex items-center gap-1.5">
-                              <span
-                                className="w-5 h-5 rounded-full border border-[#FCEABB]/60 shadow-inner inline-block shrink-0"
-                                style={{ backgroundColor: swatch.hex }}
-                                title={swatch.name}
-                              />
-                              <span className="font-sans text-xs text-[#FFFCF7]/90">
-                                {swatch.name}
-                              </span>
-                            </div>
-                          ))}
+                  {group.roles.map((role) => {
+                    const hasColors = Array.isArray(role.colors) && role.colors.length > 0;
+                    return (
+                      <div
+                        key={role.title}
+                        className="bg-[#0F383B]/40 border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 rounded-xl p-4 flex flex-col justify-between transition-all"
+                      >
+                        <div>
+                          <h4 className="font-playfair text-base font-semibold text-[#FFFCF7] mb-1">
+                            {role.title}
+                          </h4>
+                          <p
+                            className={`font-sans text-xs text-[#FFFCF7]/75 leading-relaxed ${
+                              hasColors ? 'mb-4' : ''
+                            }`}
+                          >
+                            {role.attire}
+                          </p>
                         </div>
+
+                        {/* Circular Color Swatches */}
+                        {hasColors && (
+                          <div className="pt-3 border-t border-[#D4AF37]/15">
+                            <span className="block font-sans text-[10px] uppercase tracking-widest text-[#FCEABB]/60 mb-2">
+                              Color Swatches
+                            </span>
+                            <div className="flex flex-wrap items-center gap-2.5">
+                              {role.colors.map((swatch) => (
+                                <div key={swatch.name} className="flex items-center gap-1.5">
+                                  <span
+                                    className="w-5 h-5 rounded-full border border-[#FCEABB]/60 shadow-inner inline-block shrink-0"
+                                    style={{ backgroundColor: swatch.hex }}
+                                    title={swatch.name}
+                                  />
+                                  <span className="font-sans text-xs text-[#FFFCF7]/90">
+                                    {swatch.name}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             );
