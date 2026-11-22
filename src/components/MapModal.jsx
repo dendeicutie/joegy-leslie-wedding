@@ -26,7 +26,7 @@ export default function MapModal({ venue, onClose }) {
             Click below to open live turn-by-turn navigation in Google Maps or Waze.
           </p>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${venue.mapQuery}`}
+            href={venue.mapUrl || `https://www.google.com/maps/search/?api=1&query=${venue.mapQuery}`}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 btn-shimmer text-[#031A1C] font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest shadow-md"

@@ -15,6 +15,7 @@ export default function VenuesSection({ onVenueClick }) {
         time: '2:00 PM',
         address: 'Poblacion, City Center, Cavite',
         mapQuery: 'Our+Lady+of+Fatima+Parish+Church',
+        mapUrl: 'https://maps.app.goo.gl/DrhoyhjcudUKYGyG9',
       },
     },
     {
