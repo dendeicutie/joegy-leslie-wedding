@@ -21,7 +21,7 @@ const ATTIRE_GROUPS = [
       },
       {
         title: 'Ninang & Ninong',
-        attire: 'Formal gown, or black formal suit',
+        attire: 'Formal gown, black formal suit',
         colors: [
           { name: 'Champagne', hex: '#E5D3B3' },
           { name: 'Beige', hex: '#D2C1A5' },
@@ -51,15 +51,15 @@ const ATTIRE_GROUPS = [
       },
       {
         title: 'Bridesmaids & Secondary Sponsors',
-        attire: 'Flowing formal dresses in soft sage & mint tones',
+        attire: 'Flowing formal gown in soft sage & mint tones',
         colors: [
           { name: 'Mint Green', hex: '#B4C7B7' },
           { name: 'Light Green', hex: '#98AC93' },
         ],
       },
       {
-        title: 'Flower Girl & Ring Bearer',
-        attire: 'Cream and teal gown',
+        title: 'Flower Girls & Symbol Bearers',
+        attire: 'Cream and teal gown, cream vest and teal trousers',
         colors: [
           { name: 'Cream', hex: '#F2ECE1' },
           { name: 'Teal Green', hex: '#266157' },
@@ -69,7 +69,7 @@ const ATTIRE_GROUPS = [
   },
   {
     category: 'Wedding Guests',
-    subtitle: 'Semi-Formal Celebration Attire',
+    subtitle: 'Semi-Formal Attire',
     icon: UserCheck,
     roles: [
       {
