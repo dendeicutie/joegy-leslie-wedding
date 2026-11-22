@@ -11,9 +11,33 @@ export default function RsvpModal({ onClose, showToast }) {
   const [formData, setFormData] = useState({
     fullName: '',
     attending: 'yes',
-    guestCount: '1',
+    additionalGuests: '0',
+    additionalGuestNames: [],
     message: '',
   });
+
+  const handleAdditionalGuestCountChange = (value) => {
+    const count = Number(value);
+    setFormData((prev) => ({
+      ...prev,
+      additionalGuests: value,
+      additionalGuestNames: Array.from(
+        { length: count },
+        (_, idx) => prev.additionalGuestNames[idx] || ''
+      ),
+    }));
+  };
+
+  const handleAdditionalGuestNameChange = (index, value) => {
+    setFormData((prev) => {
+      const updatedNames = [...prev.additionalGuestNames];
+      updatedNames[index] = value;
+      return {
+        ...prev,
+        additionalGuestNames: updatedNames,
+      };
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,13 +45,24 @@ export default function RsvpModal({ onClose, showToast }) {
 
     setIsSubmitting(true);
 
+    const extraCount =
+      formData.attending === 'yes' ? Number(formData.additionalGuests) : 0;
+    const cleanedNames =
+      formData.attending === 'yes'
+        ? formData.additionalGuestNames.map((name) => name.trim()).filter(Boolean)
+        : [];
+
     const payload = {
       fullName: formData.fullName.trim(),
       attendance:
         formData.attending === 'yes'
           ? 'Joyfully Accepts'
           : 'Regretfully Declines',
-      guests: formData.attending === 'yes' ? Number(formData.guestCount) : 0,
+      // Total headcount (primary guest + additional guests)
+      guests: formData.attending === 'yes' ? 1 + extraCount : 0,
+      additionalGuestsCount: extraCount,
+      additionalGuestNames:
+        cleanedNames.length > 0 ? cleanedNames.join(', ') : 'None',
       dietary: 'N/A',
       message: formData.message.trim(),
     };
@@ -104,21 +139,48 @@ export default function RsvpModal({ onClose, showToast }) {
             </div>
 
             {formData.attending === 'yes' && (
-              <div>
-                <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80 mb-1">
-                  Number of Guests Attending
-                </label>
-                <select
-                  disabled={isSubmitting}
-                  value={formData.guestCount}
-                  onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
-                >
-                  <option value="1">1 Person</option>
-                  <option value="2">2 Persons</option>
-                  <option value="3">3 Persons</option>
-                </select>
-              </div>
+              <>
+                <div>
+                  <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80 mb-1">
+                    Number of Guests Attending With You
+                  </label>
+                  <select
+                    disabled={isSubmitting}
+                    value={formData.additionalGuests}
+                    onChange={(e) => handleAdditionalGuestCountChange(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
+                  >
+                    <option value="0">0 (Just me)</option>
+                    <option value="1">1 Additional Guest</option>
+                    <option value="2">2 Additional Guests</option>
+                    <option value="3">3 Additional Guests</option>
+                  </select>
+                </div>
+
+                {Number(formData.additionalGuests) > 0 && (
+                  <div className="space-y-2.5">
+                    <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80">
+                      {Number(formData.additionalGuests) === 1
+                        ? 'Name of Additional Guest *'
+                        : `Names of ${formData.additionalGuests} Additional Guests *`}
+                    </label>
+                    {formData.additionalGuestNames.map((guestName, index) => (
+                      <input
+                        key={index}
+                        type="text"
+                        required
+                        disabled={isSubmitting}
+                        value={guestName}
+                        onChange={(e) =>
+                          handleAdditionalGuestNameChange(index, e.target.value)
+                        }
+                        placeholder={`Additional Guest ${index + 1} Full Name`}
+                        className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
             )}
 
             <div>
