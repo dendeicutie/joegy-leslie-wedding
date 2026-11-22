@@ -21,7 +21,7 @@ const ATTIRE_GROUPS = [
       },
       {
         title: 'Ninang & Ninong',
-        attire: 'Formal gown, or dark formal suit',
+        attire: 'Formal gown, or black formal suit',
         colors: [
           { name: 'Champagne', hex: '#E5D3B3' },
           { name: 'Beige', hex: '#D2C1A5' },
@@ -43,7 +43,7 @@ const ATTIRE_GROUPS = [
       },
       {
         title: 'Best Man & Groomsmen',
-        attire: 'Black suit with teal green tie & pocket square',
+        attire: 'Black suit with teal green tie',
         colors: [
           { name: 'Teal Green', hex: '#28665B' },
           { name: 'Black', hex: '#1C1C1C' },
@@ -59,7 +59,7 @@ const ATTIRE_GROUPS = [
       },
       {
         title: 'Flower Girl & Ring Bearer',
-        attire: 'Cream dress with teal sash / Cream vest & teal trousers',
+        attire: 'Cream and teal gown',
         colors: [
           { name: 'Cream', hex: '#F2ECE1' },
           { name: 'Teal Green', hex: '#266157' },
@@ -101,7 +101,7 @@ export default function DressCodeSection() {
           <strong className="text-[#FCEABB]">For our Guests:</strong> We encourage you to wear Semi-Formal Attire with any color except White, Mocha, and Teal Green.
         </p>
         <p className="font-sans text-sm md:text-base text-[#FFFCF7]/90 leading-relaxed mb-10 max-w-2xl mx-auto text-center">
-          <strong className="text-[#FCEABB]">For our Principal Sponsors &amp; Entourage:</strong> Here are the attire guide for our Principal Sponsors and Entourage.
+          <strong className="text-[#FCEABB]">For our Parents, Principal Sponsors &amp; Entourage:</strong> Here is the attire guide for our Parents, Principal Sponsors, and Entourage.
         </p>
 
         {/* Grouped Attire Cards */}

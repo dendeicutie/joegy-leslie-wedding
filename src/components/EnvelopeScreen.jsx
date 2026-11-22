@@ -59,7 +59,7 @@ export default function EnvelopeScreen({ envelopeOpen, onOpen }) {
         {/* Philippines-to-New Zealand Map Band: Same width as the envelope (max-w-md), sitting completely above it */}
         <div className="w-full max-w-md h-36 sm:h-40 md:h-44 flex items-center justify-center mb-2 pointer-events-none select-none z-0">
           <img
-            src="/mapbg.png"
+            src="/mapbg2.png"
             alt=""
             aria-hidden="true"
             className="w-full h-full object-contain opacity-65"
