@@ -11,7 +11,7 @@ const faqItems = [
   },
   {
     q: 'Is there parking available at the venues?',
-    a: 'Yes! Both Our Lady of Fatima Parish Church and Fynn Boutique Hotel offer ample secure parking space for all wedding guests.',
+    a: 'We have ample parking spaces available at the church. However, parking at Fynn Boutique Hotel will be on a first-come, first-served basis. We encourage everyone to arrive early to secure a parking space. Thank you!',
   },
   {
     q: 'Is this an unplugged ceremony?',
