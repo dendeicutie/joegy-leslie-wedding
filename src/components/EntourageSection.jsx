@@ -14,7 +14,7 @@ const principalSponsors = [
 const secondarySponsors = [
   {
     role: 'Cord',
-    names: ['Limwell M. Marquez', 'Sofia Ysabel R. Bo'],
+    names: ['Limwell M. Marquez', 'Sofia Ysabela R. Bo'],
   },
   {
     role: 'Veil',

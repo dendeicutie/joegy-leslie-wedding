@@ -3,7 +3,7 @@ import { X, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbw6PgMEwZfQG-SmRPqUrXtL6VjD_MLu7vNooDOqlaWNUp1muTee2UZTNta4i4uA7LR6/exec';
+  'https://script.google.com/macros/s/AKfycbwk8nE5e9yzvwG8IJaqXJut1vs90bdlIL9QhuZa-bGOj3FT9jUHG-bUjkAMIRJ88jtkGA/exec';
 
 export default function RsvpModal({ onClose, showToast }) {
   const [submitted, setSubmitted] = useState(false);
@@ -16,13 +16,23 @@ export default function RsvpModal({ onClose, showToast }) {
     message: '',
   });
 
-  const handleAdditionalGuestCountChange = (value) => {
-    const count = Number(value);
+  const handleAdditionalGuestCountChange = (rawValue) => {
+    // Allow clearing the input while typing, or enforce a non-negative integer
+    if (rawValue === '') {
+      setFormData((prev) => ({
+        ...prev,
+        additionalGuests: '',
+        additionalGuestNames: [],
+      }));
+      return;
+    }
+
+    const parsed = Math.max(0, Math.min(20, Math.floor(Number(rawValue) || 0)));
     setFormData((prev) => ({
       ...prev,
-      additionalGuests: value,
+      additionalGuests: String(parsed),
       additionalGuestNames: Array.from(
-        { length: count },
+        { length: parsed },
         (_, idx) => prev.additionalGuestNames[idx] || ''
       ),
     }));
@@ -46,7 +56,7 @@ export default function RsvpModal({ onClose, showToast }) {
     setIsSubmitting(true);
 
     const extraCount =
-      formData.attending === 'yes' ? Number(formData.additionalGuests) : 0;
+      formData.attending === 'yes' ? Number(formData.additionalGuests) || 0 : 0;
     const cleanedNames =
       formData.attending === 'yes'
         ? formData.additionalGuestNames.map((name) => name.trim()).filter(Boolean)
@@ -58,12 +68,10 @@ export default function RsvpModal({ onClose, showToast }) {
         formData.attending === 'yes'
           ? 'Joyfully Accepts'
           : 'Regretfully Declines',
-      // Total headcount (primary guest + additional guests)
       guests: formData.attending === 'yes' ? 1 + extraCount : 0,
       additionalGuestsCount: extraCount,
       additionalGuestNames:
         cleanedNames.length > 0 ? cleanedNames.join(', ') : 'None',
-      dietary: 'N/A',
       message: formData.message.trim(),
     };
 
@@ -87,6 +95,8 @@ export default function RsvpModal({ onClose, showToast }) {
       setIsSubmitting(false);
     }
   };
+
+  const extraGuestCount = Number(formData.additionalGuests) || 0;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
@@ -142,27 +152,37 @@ export default function RsvpModal({ onClose, showToast }) {
               <>
                 <div>
                   <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80 mb-1">
-                    Number of Guests Attending With You
+                    Number of Guests Attending With You *
                   </label>
-                  <select
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="20"
+                    step="1"
+                    required
                     disabled={isSubmitting}
                     value={formData.additionalGuests}
                     onChange={(e) => handleAdditionalGuestCountChange(e.target.value)}
+                    onBlur={() => {
+                      if (formData.additionalGuests === '') {
+                        handleAdditionalGuestCountChange('0');
+                      }
+                    }}
+                    placeholder="0 (if attending alone)"
                     className="w-full px-4 py-2.5 rounded-lg border border-[#D4AF37]/40 bg-white text-[#031A1C] focus:ring-2 focus:ring-[#D4AF37] focus:outline-none text-sm disabled:opacity-60"
-                  >
-                    <option value="0">0 (Just me)</option>
-                    <option value="1">1 Additional Guest</option>
-                    <option value="2">2 Additional Guests</option>
-                    <option value="3">3 Additional Guests</option>
-                  </select>
+                  />
+                  <p className="text-[11px] font-sans text-[#031A1C]/60 mt-1">
+                    Enter 0 if attending alone, or the number of additional guests with you.
+                  </p>
                 </div>
 
-                {Number(formData.additionalGuests) > 0 && (
+                {extraGuestCount > 0 && (
                   <div className="space-y-2.5">
                     <label className="block text-xs font-bold font-sans uppercase tracking-wider text-[#031A1C]/80">
-                      {Number(formData.additionalGuests) === 1
+                      {extraGuestCount === 1
                         ? 'Name of Additional Guest *'
-                        : `Names of ${formData.additionalGuests} Additional Guests *`}
+                        : `Names of ${extraGuestCount} Additional Guests *`}
                     </label>
                     {formData.additionalGuestNames.map((guestName, index) => (
                       <input
