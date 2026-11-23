@@ -11,6 +11,21 @@ const principalSponsors = [
   { groom: 'Mr. Eduardo L. Frilles', bride: 'Dr. Geraldine Gay E. Frilles' },
 ];
 
+const secondarySponsors = [
+  {
+    role: 'Cord',
+    names: ['Limwell M. Marquez', 'Sofia Ysabel R. Bo'],
+  },
+  {
+    role: 'Veil',
+    names: ['Jao Miguel T. Escalante', 'Jan Erros O. Hequibal'],
+  },
+  {
+    role: 'Candle',
+    names: ['Venie Paul F. Escalante', 'Joana Marie E. Hequibal'],
+  },
+];
+
 export default function EntourageSection() {
   return (
     <section id="entourage" className="py-20 px-4 max-w-6xl mx-auto">
@@ -75,6 +90,27 @@ export default function EntourageSection() {
             <p className="font-playfair text-lg md:text-xl font-bold text-[#FFFCF7]">{h.name}</p>
           </div>
         ))}
+      </div>
+
+      {/* Secondary Sponsors */}
+      <div className="mb-16">
+        <div className="text-center mb-8">
+          <h3 className="font-cinzel text-xl gold-gradient-text uppercase tracking-widest">Secondary Sponsors</h3>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {secondarySponsors.map((item, idx) => (
+            <div key={idx} className="glass-card p-6 rounded-2xl text-center border border-[#D4AF37]/30">
+              <span className="font-cinzel text-xs text-[#FCEABB] tracking-widest uppercase block mb-3">{item.role}</span>
+              <div className="space-y-1.5">
+                {item.names.map((person, pIdx) => (
+                  <p key={pIdx} className="font-playfair text-base md:text-lg font-bold text-[#FFFCF7]">
+                    {person}
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Groomsmen & Bridesmaids */}
