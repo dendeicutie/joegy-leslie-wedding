@@ -3,7 +3,7 @@ import { X, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwk8nE5e9yzvwG8IJaqXJut1vs90bdlIL9QhuZa-bGOj3FT9jUHG-bUjkAMIRJ88jtkGA/exec';
+  'https://script.google.com/macros/s/AKfycbw6PgMEwZfQG-SmRPqUrXtL6VjD_MLu7vNooDOqlaWNUp1muTee2UZTNta4i4uA7LR6/exec';
 
 export default function RsvpModal({ onClose, showToast }) {
   const [submitted, setSubmitted] = useState(false);
